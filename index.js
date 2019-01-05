@@ -29,7 +29,7 @@ _.last = function (array, n) {
 // Produces a duplicate-free version of the array, using === to test equality.
 // In particular only the first occurence of each value is kept.
 _.uniq = function (array) {
-
+  return array;
 };
 
 // OBJECTS
@@ -51,13 +51,16 @@ _.defaults = function (destination, source) {
 
 // COLLECTIONS
 
-// _.each(collection, iteratee, [context])
-// Iterates over a collection of elements (i.e. array or object),
-// yielding each in turn to an iteratee function, that is called with three arguments:
-// (element, index|key, collection), and bound to the context if one is passed.
-// Returns the collection for chaining.
 _.each = function (collection, iteratee, context) {
-
+  if (Array.isArray(collection)) {
+    for (let i = 0; i < collection.length; i++)
+      iteratee.call(context, collection[i], i, collection)
+  } else {
+    for (var key in collection)
+      if (collection.hasOwnProperty(key))
+        iteratee.call(context, collection[key], key, collection)
+  }
+  return collection;
 };
 
 // _.contains(collection, value)
