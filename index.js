@@ -3,11 +3,14 @@ var _ = {};
 
 // ARRAYS
 
-// _.first(array, [n])
-// Returns an array with the first n elements of an array.
-// If n is not provided it returns an array with just the first element.
 _.first = function (array, n) {
-
+  if (array === null || array === undefined || typeof(array) === 'number') return [];
+  if (Array.isArray(array)) {
+    if (n <= 0 || n === undefined) return array.slice(0,1);
+    return array.slice(0,n);
+  } else {
+    return Object.values(array).slice(0,n);
+  }
 };
 
 // _.last(array, [n])
