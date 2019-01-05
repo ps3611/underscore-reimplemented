@@ -130,7 +130,14 @@ _.map = function (collection, iteratee, context) {
 // to the initial invocation of reduce, iteratee is not invoked on the first element,
 // and the first element is instead passed as accumulator for the next invocation.
 _.reduce = function (collection, iteratee, accumulator, context) {
-
+  if (accumulator == undefined) {
+    accumulator = _.first(collection);
+    collection = _.last(collection, Object.values(collection).length-1)
+  }
+  _.each(collection, (el, i, collection) => {
+    accumulator = iteratee.call(context, accumulator, el, i, collection);
+  }, context);
+  return accumulator;
 };
 
 

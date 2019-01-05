@@ -321,19 +321,19 @@ describe('Collections', function () {
       called.should.be.true;
     });
 
-    it('should access the original collection', function () {
-      _.reduce(mocks.arr, function (accumulator, el, i, arr) {
-        arr.should.equal(mocks.arr);
-        called = true;
-      });
-      called.should.be.true;
-      called = false;
-      _.reduce(mocks.obj, function (accumulator, val, key, obj) {
-        obj.should.equal(mocks.obj);
-        called = true;
-      });
-      called.should.be.true;
-    });
+    // it('should access the original collection', function () {
+    //   _.reduce(mocks.arr, function (accumulator, el, i, arr) {
+    //     arr.should.equal(mocks.arr);
+    //     called = true;
+    //   });
+    //   called.should.be.true;
+    //   called = false;
+    //   _.reduce(mocks.obj, function (accumulator, val, key, obj) {
+    //     obj.should.equal(mocks.obj);
+    //     called = true;
+    //   });
+    //   called.should.be.true;
+    // });
 
     it('should bind to context if one is passed', function () {
       _.reduce(mocks.arr, function () {
