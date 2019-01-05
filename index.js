@@ -113,7 +113,11 @@ _.contains = function (collection, value) {
 // Each invocation of iteratee is called with three arguments:
 // (element, index|key, collection), and bound to the context if one is passed.
 _.map = function (collection, iteratee, context) {
-
+  const result = [];
+  _.each(collection, (el, i, collection) => {
+    result.push(iteratee.call(context, el, i, collection));
+  }, context);
+  return result;
 };
 
 
