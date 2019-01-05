@@ -1,0 +1,25 @@
+{
+  "name": "underline",
+  "version": "0.0.1",
+  "description": "A Codeworks exercise to understand the implementation of common JS utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "codeworksbcn/pre-course"
+  },
+  "author": "Codeworks",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "../node_modules/cz-changelog"
+    }
+  }
+}
