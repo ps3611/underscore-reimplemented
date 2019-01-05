@@ -51,6 +51,11 @@ _.defaults = function (destination, source) {
 
 // COLLECTIONS
 
+// _.each(collection, iteratee, [context])
+// Iterates over a collection of elements (i.e. array or object),
+// yielding each in turn to an iteratee function, that is called with three arguments:
+// (element, index|key, collection), and bound to the context if one is passed.
+// Returns the collection for chaining.
 _.each = function (collection, iteratee, context) {
   if (Array.isArray(collection)) {
     for (let i = 0; i < collection.length; i++)
@@ -63,12 +68,18 @@ _.each = function (collection, iteratee, context) {
   return collection;
 };
 
+
 // _.contains(collection, value)
 // Returns an array of indexes / keys where value can be found in the collection.
-// TIP: here's a demo of how you can re-use already implemented methods in clever ways.
 _.contains = function (collection, value) {
-
+  const indexes = [];
+  _.each(collection, (el, i, collection) => {
+    if (value === collection[i])
+      indexes.push(i);
+  }, context);
+  return indexes;
 };
+
 
 // _.map(collection, iteratee, [context])
 // Returns a new array of values by mapping each value in collection through iteratee.
@@ -90,6 +101,11 @@ _.reduce = function (collection, iteratee, accumulator, context) {
 
 };
 
+
+// _.filter(collection, predicate, [context])
+// Looks through each value in the collection, returning an array of all the values
+// that pass a truth test (predicate). Predicate is called with three arguments:
+// (element, index|key, collection), and bound to the context if one is passed.
 _.filter = function (collection, predicate, context) {
   const result = [];
   _.each(collection, function(el, i) {
@@ -98,6 +114,7 @@ _.filter = function (collection, predicate, context) {
   }, context);
   return result;
 };
+
 
 // _.reject(collection, predicate, [context])
 // Looks through each value in the collection, returning an array of all the values
