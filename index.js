@@ -65,7 +65,11 @@ _.extend = function (destination, source) {
 // with own enumerable properties present in the source object,
 // and returns the destination object.
 _.defaults = function (destination, source) {
-
+  _.each(source, (value, key, collection) => {
+    if (!(key in destination))
+      destination[key] = value;
+  });
+  return destination;
 };
 
 
