@@ -159,9 +159,10 @@ _.filter = function (collection, predicate, context) {
 // Looks through each value in the collection, returning an array of all the values
 // that don't pass a truth test (predicate). Predicate is called with three arguments:
 // (element, index|key, collection), and bound to the context if one is passed.
-// TIP: can you reuse _.filter()?
 _.reject = function (collection, predicate, context) {
-
+  return _.filter(collection, (el, i, collection) => {
+    return !predicate.call(context, el, i, collection);
+  }, context);
 };
 
 
