@@ -13,11 +13,16 @@ _.first = function (array, n) {
   }
 };
 
-// _.last(array, [n])
-// Returns an array with the last n elements of an array.
-// If n is not provided it returns an array with just the last element.
-_.last = function (array, n) {
 
+_.last = function (array, n) {
+  if (array === null || array === undefined || typeof(array) === 'number') return [];
+  if (Array.isArray(array)) {
+    if (n <= 0 || n === undefined) return array.slice(-1);
+    return array.slice(-n);
+  }
+  else {
+    return Object.values(array).slice(-n);
+  }
 };
 
 // _.uniq(array)
