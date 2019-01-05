@@ -90,12 +90,13 @@ _.reduce = function (collection, iteratee, accumulator, context) {
 
 };
 
-// _.filter(collection, predicate, [context])
-// Looks through each value in the collection, returning an array of all the values
-// that pass a truth test (predicate). Predicate is called with three arguments:
-// (element, index|key, collection), and bound to the context if one is passed.
 _.filter = function (collection, predicate, context) {
-
+  const result = [];
+  _.each(collection, function(el, i) {
+    if (predicate.call(context, el, i, collection))
+      result.push(el);
+  }, context);
+  return result;
 };
 
 // _.reject(collection, predicate, [context])
