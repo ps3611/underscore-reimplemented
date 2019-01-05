@@ -1,8 +1,14 @@
-
 var _ = {};
 
-// ARRAYS
 
+//////////////
+/// ARRAYS ///
+//////////////
+
+
+// _.first(array, [n])
+// Returns an array with the first n elements of an array.
+// If n is not provided it returns an array with just the first element.
 _.first = function (array, n) {
   if (array === null || array === undefined || typeof(array) === 'number') return [];
   if (Array.isArray(array)) {
@@ -14,6 +20,9 @@ _.first = function (array, n) {
 };
 
 
+// _.last(array, [n])
+// Returns an array with the last n elements of an array.
+// If n is not provided it returns an array with just the last element.
 _.last = function (array, n) {
   if (array === null || array === undefined || typeof(array) === 'number') return [];
   if (Array.isArray(array)) {
@@ -25,6 +34,7 @@ _.last = function (array, n) {
   }
 };
 
+
 // _.uniq(array)
 // Produces a duplicate-free version of the array, using === to test equality.
 // In particular only the first occurence of each value is kept.
@@ -35,7 +45,11 @@ _.uniq = function (array) {
   });
 };
 
-// OBJECTS
+
+///////////////
+/// OBJECTS ///
+///////////////
+
 
 // _.extend(destination, source)
 // Copies all the own enumerable properties in the source object over
@@ -43,6 +57,7 @@ _.uniq = function (array) {
 _.extend = function (destination, source) {
 
 };
+
 
 // _.defaults(destination, source)
 // Fills in undefined properties in the destination object
@@ -52,7 +67,11 @@ _.defaults = function (destination, source) {
 
 };
 
-// COLLECTIONS
+
+///////////////////
+/// COLLECTIONS ///
+///////////////////
+
 
 // _.each(collection, iteratee, [context])
 // Iterates over a collection of elements (i.e. array or object),
@@ -92,6 +111,7 @@ _.map = function (collection, iteratee, context) {
 
 };
 
+
 // _.reduce(collection, iteratee, [accumulator], [context])
 // Reduce boils down a collection of values into a single value.
 // Accumulator is the initial state of the reduction,
@@ -128,6 +148,7 @@ _.reject = function (collection, predicate, context) {
 
 };
 
+
 // _.every(collection, [predicate], [context])
 // Returns true if all values in the collection pass the predicate truth test.
 // Predicate is called with three arguments:
@@ -139,6 +160,7 @@ _.every = function (collection, predicate, context) {
 
 };
 
+
 // _.some(collection, [predicate], [context])
 // Returns true if any value in the collection passes the predicate truth test.
 // Predicate is called with three arguments:
@@ -149,6 +171,7 @@ _.some = function (collection, predicate, context) {
 
 };
 
+
 // _.invoke(collection, methodName, *arguments)
 // Returns an array with the results of calling the method
 // indicated by methodName on each value in the collection.
@@ -156,6 +179,7 @@ _.some = function (collection, predicate, context) {
 _.invoke = function (collection, methodName) {
 
 };
+
 
 // _.pluck(collection, propertyName)
 // A convenient version of what is perhaps the most common use-case for map:
@@ -166,7 +190,11 @@ _.pluck = function (collection, propertyName) {
 
 };
 
-// FUNCTIONS
+
+/////////////////
+/// FUNCTIONS ///
+/////////////////
+
 
 // _.once(func)
 // Creates a version of the function that can only be called one time.
@@ -176,6 +204,7 @@ _.pluck = function (collection, propertyName) {
 _.once = function (func) {
 
 };
+
 
 // _.memoize(func)
 // Memoizes a given function by caching the computed result.
@@ -188,6 +217,7 @@ _.memoize = function (func) {
 
 };
 
+
 // _.delay(function, wait, *arguments)
 // Much like setTimeout(), invokes function after waiting milliseconds.
 // If you pass the optional arguments, they will be forwarded
@@ -195,6 +225,7 @@ _.memoize = function (func) {
 _.delay = function (func, wait) {
 
 };
+
 
 // _.throttle(function, wait)
 // Returns a new, throttled version of the passed function that,
