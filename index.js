@@ -28,8 +28,11 @@ _.last = function (array, n) {
 // _.uniq(array)
 // Produces a duplicate-free version of the array, using === to test equality.
 // In particular only the first occurence of each value is kept.
+// predicate(element, index|key, collection)
 _.uniq = function (array) {
-  return array;
+  return _.filter(array, function(el, i, collection) {
+    return _.contains(collection.slice(0,i), el).length === 0;
+  });
 };
 
 // OBJECTS
