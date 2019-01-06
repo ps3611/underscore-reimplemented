@@ -4,7 +4,7 @@ Underscore is a popular JavaScript library that provides utility functions for c
 
 ## Methods
 
-![Img](https://s3.amazonaws.com/ps3611-images/underscore.png)
+![Img](https://s3.amazonaws.com/ps3611-images/underscorejs.png)
 
 
 ## Testing
