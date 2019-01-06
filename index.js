@@ -1,4 +1,4 @@
-var _ = {};
+const _ = {};
 
 
 //////////////
@@ -105,7 +105,7 @@ _.each = function (collection, iteratee, context) {
     for (let i = 0; i < collection.length; i++)
       iteratee.call(context, collection[i], i, collection)
   } else {
-    for (var key in collection)
+    for (let key in collection)
       if (collection.hasOwnProperty(key))
         iteratee.call(context, collection[key], key, collection)
   }
@@ -193,7 +193,7 @@ _.every = function (collection, predicate, context) {
     for (let i = 0; i < collection.length; i++)
       if (!predicate.call(context, collection[i], i, collection)) return false;
   } else {
-    for (var key in collection)
+    for (let key in collection)
       if (collection.hasOwnProperty(key))
         if (!predicate.call(context, collection[key], key, collection)) return false;
   }

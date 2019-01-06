@@ -797,3 +797,6 @@ describe('Functions', function () {
   });
 
 });
+
+// more tests:
+// shuffle, first, last, once
