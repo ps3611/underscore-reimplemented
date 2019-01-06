@@ -250,7 +250,12 @@ _.once = function (func) {
 // will check if it has already computed the result for the given argument
 // and return that value instead of recomputing it.
 _.memoize = function (func) {
-
+  const cache = {};
+  return function() {
+    if (!cache[arguments[0]])
+      cache[arguments[0]] = func.apply(null, arguments);
+    return cache[arguments[0]];
+  }
 };
 
 
