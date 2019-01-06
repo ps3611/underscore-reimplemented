@@ -230,7 +230,15 @@ _.pluck = function (collection, propertyName) {
 // returning the value from the original call. Useful for initialization functions,
 // instead of having to set a boolean flag and then check it later.
 _.once = function (func) {
-
+  let called = false;
+  let result;
+  return function () {
+    if (!called) {
+      called = true;
+      result = func.apply(null, arguments);
+    }
+    return result;
+  }
 };
 
 
