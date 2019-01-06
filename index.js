@@ -276,7 +276,16 @@ _.delay = function (func, wait) {
 // just return the last computed result. Useful for rate-limiting
 // events that occur faster than you can keep up with.
 _.throttle = function (func, wait) {
-
+  let result;
+  let lastInvoked = 0;
+  return function() {
+    const now = Date.now();
+    if (now - lastInvoked > wait) {
+      result = func.apply(null, arguments);
+      lastInvoked = now;
+    }
+    return result;
+  }
 };
 
 
