@@ -48,6 +48,21 @@ _.uniq = function (array) {
 };
 
 
+// Returns a shuffled copy of an array, using a version of
+// the Fisher-Yates shuffle.
+_.shuffle = function (array) {
+  let pos, temp;
+  let result = array.slice()
+  for (let i = result.length-1; i > 0; i--) {
+    pos = Math.floor(Math.random() * (i+1));
+    temp = result[i];
+    result[i] = result[pos];
+    result[pos] = temp;
+  }
+  return result;
+}
+
+
 ///////////////
 /// OBJECTS ///
 ///////////////
@@ -287,13 +302,6 @@ _.throttle = function (func, wait) {
     return result;
   }
 };
-
-
-// Returns a shuffled copy of an array, using a version of
-// the Fisher-Yates shuffle.
-_.shuffle = function (list) {
-
-}
 
 
 // Allow tests to run on the server (leave at the bottom)

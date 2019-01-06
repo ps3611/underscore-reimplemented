@@ -81,6 +81,39 @@ describe('Arrays', function () {
 
   });
 
+  describe('shuffle', function () {
+
+    it('should return a shuffled copy of a list', function () {
+      var check = false;
+      var shuffled = _.shuffle(mocks.arr);
+      for (var i = 0; i < shuffled.length; i++) {
+        if (shuffled[i] === mocks.arr[i]) {
+          check = false;
+        } else {
+          check = true;
+          break;
+        }
+      }
+      check.should.be.true;
+      shuffled = mocks.arr;
+      for (var j = 0; j < shuffled.length; j++) {
+        if (shuffled[j] === mocks.arr[j]) {
+          check = false;
+        } else {
+          check = true;
+          break;
+        }
+      }
+      check.should.be.false;
+    });
+
+    it('should return a shuffled copy with the same number ol elements', function () {
+      var length;
+      _.shuffle(mocks.arr).length.should.equal(mocks.arr.length);
+    });
+
+  });
+
 });
 
 describe('Objects', function () {
@@ -759,39 +792,6 @@ describe('Functions', function () {
         catch (e) {err = e;}
         done(err);
       }, 60);
-    });
-
-  });
-
-  describe('shuffle', function () {
-
-    it('should return a shuffled copy of a list', function () {
-      var check = false;
-      var shuffled = _.shuffle(mocks.arr);
-      for (var i = 0; i < shuffled.length; i++) {
-        if (shuffled[i] === mocks.arr[i]) {
-          check = false;
-        } else {
-          check = true;
-          break;
-        }
-      }
-      check.should.be.true;
-      shuffled = mocks.arr;
-      for (var j = 0; j < shuffled.length; j++) {
-        if (shuffled[j] === mocks.arr[j]) {
-          check = false;
-        } else {
-          check = true;
-          break;
-        }
-      }
-      check.should.be.false;
-    });
-
-    it('should return a shuffled copy with the same number ol elements', function () {
-      var length;
-      _.shuffle(mocks.arr).length.should.equal(mocks.arr.length);
     });
 
   });
