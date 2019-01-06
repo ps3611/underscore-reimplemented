@@ -173,8 +173,6 @@ _.reject = function (collection, predicate, context) {
 // Predicate is called with three arguments:
 // (element, index|key, collection), and bound to the context if one is passed.
 // Short-circuits and stops traversing the list if a false element is found.
-// TIP: without the short-circuiting you could reuse _.reduce(). Can you figure how?
-// Because of the short-circuiting though, you need to re-implement a modified _.each().
 _.every = function (collection, predicate, context) {
   if (Array.isArray(collection)) {
     for (let i = 0; i < collection.length; i++)
@@ -192,10 +190,10 @@ _.every = function (collection, predicate, context) {
 // Returns true if any value in the collection passes the predicate truth test.
 // Predicate is called with three arguments:
 // (element, index|key, collection), and bound to the context if one is passed.
-// Short-circuits and stops traversing the list if a true element is found.
-// TIP: what method that you have already implemented can be reused here?
 _.some = function (collection, predicate, context) {
-
+  return !_.every(collection, (el, i, collection) => {
+    return !predicate.call(context, el, i, collection);
+  }, context);
 };
 
 
