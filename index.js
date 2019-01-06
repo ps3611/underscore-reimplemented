@@ -205,7 +205,7 @@ _.invoke = function (collection, methodName) {
   const args = Object.values(arguments).slice(2);
   return _.map(collection, (el, i, collection) => {
     return (methodName instanceof Function) ? methodName(el, args) : el[methodName].apply(el, args);
-  }, context);
+  });
 };
 
 
@@ -215,7 +215,7 @@ _.invoke = function (collection, methodName) {
 // in the collection, and returns an array with all the values
 // corresponding to the property indicated by propertyName.
 _.pluck = function (collection, propertyName) {
-
+  return _.map(collection, (el, i, collection) => el[propertyName]);
 };
 
 
