@@ -264,7 +264,8 @@ _.memoize = function (func) {
 // If you pass the optional arguments, they will be forwarded
 // on to the function when it is invoked.
 _.delay = function (func, wait) {
-
+  const args = Object.values(arguments).slice(2);
+  setTimeout(() => func.apply(null, args), wait);
 };
 
 
