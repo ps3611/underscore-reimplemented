@@ -15,6 +15,7 @@ _.first = function (array, n) {
     if (n <= 0 || n === undefined) return array.slice(0,1);
     return array.slice(0,n);
   } else {
+    if (n <= 0 || n === undefined) return Object.values(array).slice(0,1);
     return Object.values(array).slice(0,n);
   }
 };
@@ -30,6 +31,7 @@ _.last = function (array, n) {
     return array.slice(-n);
   }
   else {
+    if (n <= 0 || n === undefined) return Object.values(array).slice(-1);
     return Object.values(array).slice(-n);
   }
 };
