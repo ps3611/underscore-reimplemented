@@ -202,7 +202,10 @@ _.some = function (collection, predicate, context) {
 // indicated by methodName on each value in the collection.
 // Any extra arguments passed to invoke will be forwarded on to the method invocation.
 _.invoke = function (collection, methodName) {
-
+  const args = Object.values(arguments).slice(2);
+  return _.map(collection, (el, i, collection) => {
+    return (methodName instanceof Function) ? methodName(el, args) : el[methodName].apply(el, args);
+  }, context);
 };
 
 
