@@ -763,10 +763,6 @@ describe('Functions', function () {
 
   });
 
-});
-
-describe('Extra credits', function () {
-
   describe('shuffle', function () {
 
     it('should return a shuffled copy of a list', function () {

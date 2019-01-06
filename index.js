@@ -266,9 +266,12 @@ _.throttle = function (func, wait) {
 };
 
 
+// Returns a shuffled copy of an array, using a version of
+// the Fisher-Yates shuffle.
 _.shuffle = function (list) {
 
 }
+
 
 // Allow tests to run on the server (leave at the bottom)
 if (typeof window === 'undefined') {
