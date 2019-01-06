@@ -176,7 +176,15 @@ _.reject = function (collection, predicate, context) {
 // TIP: without the short-circuiting you could reuse _.reduce(). Can you figure how?
 // Because of the short-circuiting though, you need to re-implement a modified _.each().
 _.every = function (collection, predicate, context) {
-
+  if (Array.isArray(collection)) {
+    for (let i = 0; i < collection.length; i++)
+      if (!predicate.call(context, collection[i], i, collection)) return false;
+  } else {
+    for (var key in collection)
+      if (collection.hasOwnProperty(key))
+        if (!predicate.call(context, collection[key], key, collection)) return false;
+  }
+  return true;
 };
 
 
