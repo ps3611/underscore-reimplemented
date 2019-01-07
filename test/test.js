@@ -103,28 +103,28 @@ describe('Arrays', function () {
     });
 
     it('should return a shuffled copy of the array', function () {
-    var check = false;
-    var shuffled = _.shuffle(testData.arr);
-    for (var i = 0; i < shuffled.length; i++) {
-      if (shuffled[i] === testData.arr[i]) {
-        check = false;
-      } else {
-        check = true;
-        break;
+      var check = false;
+      var shuffled = _.shuffle(testData.arr);
+      for (var i = 0; i < shuffled.length; i++) {
+        if (shuffled[i] === testData.arr[i]) {
+          check = false;
+        } else {
+          check = true;
+          break;
+        }
       }
-    }
-    check.should.be.true;
-    shuffled = testData.arr;
-    for (var j = 0; j < shuffled.length; j++) {
-      if (shuffled[j] === testData.arr[j]) {
-        check = false;
-      } else {
-        check = true;
-        break;
+      check.should.be.true;
+      shuffled = testData.arr;
+      for (var j = 0; j < shuffled.length; j++) {
+        if (shuffled[j] === testData.arr[j]) {
+          check = false;
+        } else {
+          check = true;
+          break;
+        }
       }
-    }
-    check.should.be.false;
-  });
+      check.should.be.false;
+    });
 
   });
 
@@ -811,6 +811,3 @@ describe('Functions', function () {
   });
 
 });
-
-// more tests:
-// shuffle, first, last, once
