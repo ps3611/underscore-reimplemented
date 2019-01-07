@@ -11,24 +11,21 @@ Underscore is a popular JavaScript library that provides utility functions for c
 
 1. Clone repository
 ```sh
-> git clone https://github.com/ps3611/hoolihomes.git
+> git clone https://github.com/ps3611/underscore.js.git
 ```
-For each directory *cron*, *server* and *client*, do:
 
 2. Install dependencies
 ```sh
 > npm install
+> bower install
 ```
 
-3. Configure environment
+3. Run tests
+
+Method 1: simply open *index.html* in a browser
+
+Method 2: Run
 
 ```sh
-> cp .env.example .env
-# Edit .env
-```
-
-4. Launch directory's code
-
-```sh
-> npm start
+> npm test
 ```
