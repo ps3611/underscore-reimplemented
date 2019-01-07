@@ -4,7 +4,7 @@
 if (typeof window === 'undefined') {
   var should = require('chai').should();
   var _ = require('../index.js');
-  var mocks = require('./mocks.js');
+  var testData = require('./testData.js');
 }
 
 describe('Arrays', function () {
@@ -12,22 +12,22 @@ describe('Arrays', function () {
   describe('first', function () {
 
     it('should return an array with the first n elements of the array', function () {
-      _.first(mocks.arr, 2).should.eql(mocks.arr.slice(0,2));
-      _.first(mocks.arr, 3).should.eql(mocks.arr.slice(0,3));
+      _.first(testData.arr, 2).should.eql(testData.arr.slice(0,2));
+      _.first(testData.arr, 3).should.eql(testData.arr.slice(0,3));
     });
 
     it('should return an array with the first element if n is not a number, is zero, or negative', function () {
-      _.first(mocks.arr).should.eql([mocks.arr[0]]);
-      _.first(mocks.arr, 0).should.eql([mocks.arr[0]]);
-      _.first(mocks.arr, -1).should.eql([mocks.arr[0]]);
+      _.first(testData.arr).should.eql([testData.arr[0]]);
+      _.first(testData.arr, 0).should.eql([testData.arr[0]]);
+      _.first(testData.arr, -1).should.eql([testData.arr[0]]);
     });
 
     it('should return the entire array if n is > length', function () {
-      _.first(mocks.arr, mocks.arr.length + 1).should.eql(mocks.arr);
+      _.first(testData.arr, testData.arr.length + 1).should.eql(testData.arr);
     });
 
     it('should work on an arguments object', function () {
-      _.first(mocks.argumentsObj, 2).should.eql(mocks.arr.slice(0,2));
+      _.first(testData.argumentsObj, 2).should.eql(testData.arr.slice(0,2));
     });
 
     it('should return an empty array if array is not an array', function () {
@@ -41,28 +41,28 @@ describe('Arrays', function () {
   describe('last', function () {
 
     it('should not modify the original array', function () {
-      var original = Array.prototype.slice.call(mocks.arr);
-      _.last(mocks.arr);
-      mocks.arr.should.eql(original);
+      var original = Array.prototype.slice.call(testData.arr);
+      _.last(testData.arr);
+      testData.arr.should.eql(original);
     });
 
     it('should return an array with the last n elements of the array', function () {
-      _.last(mocks.arr, 2).should.eql(mocks.arr.slice(-2));
-      _.last(mocks.arr, 3).should.eql(mocks.arr.slice(-3));
+      _.last(testData.arr, 2).should.eql(testData.arr.slice(-2));
+      _.last(testData.arr, 3).should.eql(testData.arr.slice(-3));
     });
 
     it('should return an array with the last element if n is not a number, is zero, or negative', function () {
-      _.last(mocks.arr).should.eql([mocks.arr[mocks.arr.length-1]]);
-      _.last(mocks.arr, 0).should.eql([mocks.arr[mocks.arr.length-1]]);
-      _.last(mocks.arr, -1).should.eql([mocks.arr[mocks.arr.length-1]]);
+      _.last(testData.arr).should.eql([testData.arr[testData.arr.length-1]]);
+      _.last(testData.arr, 0).should.eql([testData.arr[testData.arr.length-1]]);
+      _.last(testData.arr, -1).should.eql([testData.arr[testData.arr.length-1]]);
     });
 
     it('should return the entire array if n is > length', function () {
-      _.last(mocks.arr, mocks.arr.length + 1).should.eql(mocks.arr);
+      _.last(testData.arr, testData.arr.length + 1).should.eql(testData.arr);
     });
 
     it('should work on an arguments object', function () {
-      _.last(mocks.argumentsObj, 2).should.eql(mocks.arr.slice(-2));
+      _.last(testData.argumentsObj, 2).should.eql(testData.arr.slice(-2));
     });
 
     it('should return an empty array if array is not an array', function () {
@@ -85,9 +85,9 @@ describe('Arrays', function () {
 
     it('should return a shuffled copy of a list', function () {
       var check = false;
-      var shuffled = _.shuffle(mocks.arr);
+      var shuffled = _.shuffle(testData.arr);
       for (var i = 0; i < shuffled.length; i++) {
-        if (shuffled[i] === mocks.arr[i]) {
+        if (shuffled[i] === testData.arr[i]) {
           check = false;
         } else {
           check = true;
@@ -95,9 +95,9 @@ describe('Arrays', function () {
         }
       }
       check.should.be.true;
-      shuffled = mocks.arr;
+      shuffled = testData.arr;
       for (var j = 0; j < shuffled.length; j++) {
-        if (shuffled[j] === mocks.arr[j]) {
+        if (shuffled[j] === testData.arr[j]) {
           check = false;
         } else {
           check = true;
@@ -109,7 +109,7 @@ describe('Arrays', function () {
 
     it('should return a shuffled copy with the same number ol elements', function () {
       var length;
-      _.shuffle(mocks.arr).length.should.equal(mocks.arr.length);
+      _.shuffle(testData.arr).length.should.equal(testData.arr.length);
     });
 
   });
@@ -121,7 +121,7 @@ describe('Objects', function () {
   var obj;
 
   afterEach(function () {
-    delete mocks.obj.constructor.prototype.foo;
+    delete testData.obj.constructor.prototype.foo;
   });
 
   describe('extend', function () {
@@ -131,17 +131,17 @@ describe('Objects', function () {
     });
 
     it('should copy properties from source to destination', function () {
-      _.extend(obj, mocks.obj);
-      obj.should.eql(mocks.obj);
+      _.extend(obj, testData.obj);
+      obj.should.eql(testData.obj);
     });
 
     it('should return the destination object', function () {
-      _.extend(obj, mocks.obj).should.equal(obj);
+      _.extend(obj, testData.obj).should.equal(obj);
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.extend(obj, mocks.obj);
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.extend(obj, testData.obj);
       obj.hasOwnProperty('foo').should.be.false;
     });
 
@@ -154,20 +154,20 @@ describe('Objects', function () {
     });
 
     it('should copy source properties to undefined properties in the destination object', function () {
-      var res = JSON.parse(JSON.stringify(mocks.obj));
-      res[mocks.objKeysArr[0]] = 'existing';
-      obj[mocks.objKeysArr[0]] = 'existing';
-      _.defaults(obj, mocks.obj);
+      var res = JSON.parse(JSON.stringify(testData.obj));
+      res[testData.objKeysArr[0]] = 'existing';
+      obj[testData.objKeysArr[0]] = 'existing';
+      _.defaults(obj, testData.obj);
       obj.should.eql(res);
     });
 
     it('should return the destination object', function () {
-      _.defaults(obj, mocks.obj).should.equal(obj);
+      _.defaults(obj, testData.obj).should.equal(obj);
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = undefined; // needs to be undefined to test properly with _.defaults()
-      _.defaults(obj, mocks.obj);
+      testData.obj.constructor.prototype.foo = undefined; // needs to be undefined to test properly with _.defaults()
+      _.defaults(obj, testData.obj);
       obj.hasOwnProperty('foo').should.be.false;
     });
 
@@ -180,7 +180,7 @@ describe('Collections', function () {
   var called = false;
 
   afterEach(function () {
-    delete mocks.obj.constructor.prototype.foo;
+    delete testData.obj.constructor.prototype.foo;
   });
 
   describe('each', function () {
@@ -190,7 +190,7 @@ describe('Collections', function () {
     });
 
     it('should iterate over an array', function () {
-      _.each(mocks.arr, function (el, i, arr) {
+      _.each(testData.arr, function (el, i, arr) {
         (typeof i).should.equal('number');
         arr[i].should.equal(el);
         called = true;
@@ -199,7 +199,7 @@ describe('Collections', function () {
     });
 
     it('should iterate over an object', function () {
-      _.each(mocks.obj, function (val, key, obj) {
+      _.each(testData.obj, function (val, key, obj) {
         obj[key].should.equal(val);
         called = true;
       });
@@ -207,8 +207,8 @@ describe('Collections', function () {
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.each(mocks.obj, function (val, key, obj) {
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.each(testData.obj, function (val, key, obj) {
         obj.hasOwnProperty(key).should.be.true;
         called = true;
       });
@@ -216,36 +216,36 @@ describe('Collections', function () {
     });
 
     it('should access the original collection', function () {
-      _.each(mocks.arr, function (el, i, arr) {
-        arr.should.equal(mocks.arr);
+      _.each(testData.arr, function (el, i, arr) {
+        arr.should.equal(testData.arr);
         called = true;
       });
       called.should.be.true;
       called = false;
-      _.each(mocks.obj, function (val, key, obj) {
-        obj.should.equal(mocks.obj);
+      _.each(testData.obj, function (val, key, obj) {
+        obj.should.equal(testData.obj);
         called = true;
       });
       called.should.be.true;
     });
 
     it('should bind to context if one is passed', function () {
-      _.each(mocks.arr, function () {
-        this.should.equal(mocks.obj);
+      _.each(testData.arr, function () {
+        this.should.equal(testData.obj);
         called = true;
-      }, mocks.obj);
+      }, testData.obj);
       called.should.be.true;
       called = false;
-      _.each(mocks.obj, function () {
-        this.should.equal(mocks.arr);
+      _.each(testData.obj, function () {
+        this.should.equal(testData.arr);
         called = true;
-      }, mocks.arr);
+      }, testData.arr);
       called.should.be.true;
     });
 
     it('should return the collection', function () {
-      _.each(mocks.arr, function () {}).should.equal(mocks.arr);
-      _.each(mocks.obj, function () {}).should.equal(mocks.obj);
+      _.each(testData.arr, function () {}).should.equal(testData.arr);
+      _.each(testData.obj, function () {}).should.equal(testData.obj);
     });
 
   });
@@ -253,11 +253,11 @@ describe('Collections', function () {
   describe('contains', function () {
 
     it('should return an array of indexes / keys where values are found', function () {
-      _.contains(mocks.arr, mocks.arr[0]).should.eql([0]);
+      _.contains(testData.arr, testData.arr[0]).should.eql([0]);
     });
 
     it('should return an empty array if value is not found', function () {
-      _.contains(mocks.arr, []).should.eql([]);
+      _.contains(testData.arr, []).should.eql([]);
     });
 
   });
@@ -269,19 +269,19 @@ describe('Collections', function () {
     });
 
     it('should return an array with the results of applying iteratee to each element', function () {
-      _.map(mocks.arr, function (el, i, arr) {
+      _.map(testData.arr, function (el, i, arr) {
         arr[i].should.equal(el);
         return el;
-      }).should.eql(mocks.arr);
-      _.map(mocks.obj, function (val, key, obj) {
+      }).should.eql(testData.arr);
+      _.map(testData.obj, function (val, key, obj) {
         obj[key].should.equal(val);
         return val;
-      }).should.eql(mocks.objValuesArr);
+      }).should.eql(testData.objValuesArr);
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.map(mocks.obj, function (val, key, obj) {
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.map(testData.obj, function (val, key, obj) {
         obj.hasOwnProperty(key).should.be.true;
         called = true;
       });
@@ -289,30 +289,30 @@ describe('Collections', function () {
     });
 
     it('should access the original collection', function () {
-      _.map(mocks.arr, function (el, i, arr) {
-        arr.should.equal(mocks.arr);
+      _.map(testData.arr, function (el, i, arr) {
+        arr.should.equal(testData.arr);
         called = true;
       });
       called.should.be.true;
       called = false;
-      _.map(mocks.obj, function (val, key, obj) {
-        obj.should.equal(mocks.obj);
+      _.map(testData.obj, function (val, key, obj) {
+        obj.should.equal(testData.obj);
         called = true;
       });
       called.should.be.true;
     });
 
     it('should bind to context if one is passed', function () {
-      _.map(mocks.arr, function () {
-        this.should.equal(mocks.obj);
+      _.map(testData.arr, function () {
+        this.should.equal(testData.obj);
         called = true;
-      }, mocks.obj);
+      }, testData.obj);
       called.should.be.true;
       called = false;
-      _.map(mocks.obj, function () {
-        this.should.equal(mocks.arr);
+      _.map(testData.obj, function () {
+        this.should.equal(testData.arr);
         called = true;
-      }, mocks.arr);
+      }, testData.arr);
       called.should.be.true;
     });
 
@@ -325,28 +325,28 @@ describe('Collections', function () {
     });
 
     it('should be able to reduce a collection to a single value', function () {
-      _.reduce(mocks.arr, function (accumulator, el, i, arr) {
+      _.reduce(testData.arr, function (accumulator, el, i, arr) {
         arr[i].should.equal(el);
         return accumulator.toString() + el.toString();
-      }).should.equal(mocks.stringifiedArrElms);
-      _.reduce(mocks.obj, function (accumulator, val, key, obj) {
+      }).should.equal(testData.stringifiedArrElms);
+      _.reduce(testData.obj, function (accumulator, val, key, obj) {
         obj[key].should.equal(val);
         return accumulator.toString() + val.toString();
-      }).should.equal(mocks.stringifiedObjValues);
+      }).should.equal(testData.stringifiedObjValues);
     });
 
     it('should support initial state', function () {
-      _.reduce(mocks.arr, function (accumulator, el) {
+      _.reduce(testData.arr, function (accumulator, el) {
         return accumulator + el.toString();
-      }, 'init').should.equal('init' + mocks.stringifiedArrElms);
-      _.reduce(mocks.obj, function (accumulator, val) {
+      }, 'init').should.equal('init' + testData.stringifiedArrElms);
+      _.reduce(testData.obj, function (accumulator, val) {
         return accumulator + val.toString();
-      }, 'init').should.equal('init' + mocks.stringifiedObjValues);
+      }, 'init').should.equal('init' + testData.stringifiedObjValues);
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.reduce(mocks.obj, function (accumulator, val, key, obj) {
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.reduce(testData.obj, function (accumulator, val, key, obj) {
         obj.hasOwnProperty(key).should.be.true;
         called = true;
         return accumulator;
@@ -355,30 +355,30 @@ describe('Collections', function () {
     });
 
     // it('should access the original collection', function () {
-    //   _.reduce(mocks.arr, function (accumulator, el, i, arr) {
-    //     arr.should.equal(mocks.arr);
+    //   _.reduce(testData.arr, function (accumulator, el, i, arr) {
+    //     arr.should.equal(testData.arr);
     //     called = true;
     //   });
     //   called.should.be.true;
     //   called = false;
-    //   _.reduce(mocks.obj, function (accumulator, val, key, obj) {
-    //     obj.should.equal(mocks.obj);
+    //   _.reduce(testData.obj, function (accumulator, val, key, obj) {
+    //     obj.should.equal(testData.obj);
     //     called = true;
     //   });
     //   called.should.be.true;
     // });
 
     it('should bind to context if one is passed', function () {
-      _.reduce(mocks.arr, function () {
-        this.should.equal(mocks.obj);
+      _.reduce(testData.arr, function () {
+        this.should.equal(testData.obj);
         called = true;
-      }, null, mocks.obj);
+      }, null, testData.obj);
       called.should.be.true;
       called = false;
-      _.reduce(mocks.obj, function () {
-        this.should.equal(mocks.arr);
+      _.reduce(testData.obj, function () {
+        this.should.equal(testData.arr);
         called = true;
-      }, null, mocks.arr);
+      }, null, testData.arr);
       called.should.be.true;
     });
 
@@ -392,26 +392,26 @@ describe('Collections', function () {
 
     it('should return an array of values that pass a truth test', function () {
       var res = [];
-      mocks.halfTruthyArr.forEach(function (el) {
+      testData.halfTruthyArr.forEach(function (el) {
         el && res.push(el);
       });
-      _.filter(mocks.halfTruthyArr, function (el, i, arr) {
+      _.filter(testData.halfTruthyArr, function (el, i, arr) {
         should.equal(arr[i], el);
         return el;
       }).should.eql(res);
       res = [];
-      mocks.halfTruthyObjValuesArr.forEach(function (val) {
+      testData.halfTruthyObjValuesArr.forEach(function (val) {
         val && res.push(val);
       });
-      _.filter(mocks.halfTruthyObj, function (val, key, obj) {
+      _.filter(testData.halfTruthyObj, function (val, key, obj) {
         should.equal(obj[key], val);
         return val;
       }).should.eql(res);
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.filter(mocks.obj, function (val, key, obj) {
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.filter(testData.obj, function (val, key, obj) {
         obj.hasOwnProperty(key).should.be.true;
         called = true;
       });
@@ -419,30 +419,30 @@ describe('Collections', function () {
     });
 
     it('should access the original collection', function () {
-      _.filter(mocks.arr, function (el, i, arr) {
-        arr.should.equal(mocks.arr);
+      _.filter(testData.arr, function (el, i, arr) {
+        arr.should.equal(testData.arr);
         called = true;
       });
       called.should.be.true;
       called = false;
-      _.filter(mocks.obj, function (val, key, obj) {
-        obj.should.equal(mocks.obj);
+      _.filter(testData.obj, function (val, key, obj) {
+        obj.should.equal(testData.obj);
         called = true;
       });
       called.should.be.true;
     });
 
     it('should bind to context if one is passed', function () {
-      _.filter(mocks.arr, function () {
-        this.should.equal(mocks.obj);
+      _.filter(testData.arr, function () {
+        this.should.equal(testData.obj);
         called = true;
-      }, mocks.obj);
+      }, testData.obj);
       called.should.be.true;
       called = false;
-      _.filter(mocks.obj, function () {
-        this.should.equal(mocks.arr);
+      _.filter(testData.obj, function () {
+        this.should.equal(testData.arr);
         called = true;
-      }, mocks.arr);
+      }, testData.arr);
       called.should.be.true;
     });
 
@@ -456,26 +456,26 @@ describe('Collections', function () {
 
     it('should return an array of values that do not pass a truth test', function () {
       var res = [];
-      mocks.halfTruthyArr.forEach(function (el) {
+      testData.halfTruthyArr.forEach(function (el) {
         !el && res.push(el);
       });
-      _.reject(mocks.halfTruthyArr, function (el, i, arr) {
+      _.reject(testData.halfTruthyArr, function (el, i, arr) {
         should.equal(arr[i], el);
         return el;
       }).should.eql(res);
       res = [];
-      mocks.halfTruthyObjValuesArr.forEach(function (val) {
+      testData.halfTruthyObjValuesArr.forEach(function (val) {
         !val && res.push(val);
       });
-      _.reject(mocks.halfTruthyObj, function (val, key, obj) {
+      _.reject(testData.halfTruthyObj, function (val, key, obj) {
         should.equal(obj[key], val);
         return val;
       }).should.eql(res);
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.reject(mocks.obj, function (val, key, obj) {
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.reject(testData.obj, function (val, key, obj) {
         obj.hasOwnProperty(key).should.be.true;
         called = true;
       });
@@ -483,30 +483,30 @@ describe('Collections', function () {
     });
 
     it('should access the original collection', function () {
-      _.reject(mocks.arr, function (el, i, arr) {
-        arr.should.equal(mocks.arr);
+      _.reject(testData.arr, function (el, i, arr) {
+        arr.should.equal(testData.arr);
         called = true;
       });
       called.should.be.true;
       called = false;
-      _.reject(mocks.obj, function (val, key, obj) {
-        obj.should.equal(mocks.obj);
+      _.reject(testData.obj, function (val, key, obj) {
+        obj.should.equal(testData.obj);
         called = true;
       });
       called.should.be.true;
     });
 
     it('should bind to context if one is passed', function () {
-      _.reject(mocks.arr, function () {
-        this.should.equal(mocks.obj);
+      _.reject(testData.arr, function () {
+        this.should.equal(testData.obj);
         called = true;
-      }, mocks.obj);
+      }, testData.obj);
       called.should.be.true;
       called = false;
-      _.reject(mocks.obj, function () {
-        this.should.equal(mocks.arr);
+      _.reject(testData.obj, function () {
+        this.should.equal(testData.arr);
         called = true;
-      }, mocks.arr);
+      }, testData.arr);
       called.should.be.true;
     });
 
@@ -519,25 +519,25 @@ describe('Collections', function () {
     });
 
     it('should return true if all values pass a truth test', function () {
-      _.every(mocks.arr, function (el, i, arr) {
+      _.every(testData.arr, function (el, i, arr) {
         arr[i].should.equal(el);
         return el;
       }).should.be.true;
-      // _.every(mocks.obj, function (val, key, obj) {
+      // _.every(testData.obj, function (val, key, obj) {
       //   obj[key].should.equal(val);
       //   return val;
       // }).should.be.true;
-      // _.every(mocks.halfTruthyArr, function (el) {
+      // _.every(testData.halfTruthyArr, function (el) {
       //   return el;
       // }).should.be.false;
-      // _.every(mocks.halfTruthyObj, function (val) {
+      // _.every(testData.halfTruthyObj, function (val) {
       //   return val;
       // }).should.be.false;
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.every(mocks.obj, function (val, key, obj) {
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.every(testData.obj, function (val, key, obj) {
         obj.hasOwnProperty(key).should.be.true;
         called = true;
       });
@@ -545,30 +545,30 @@ describe('Collections', function () {
     });
 
     it('should access the original collection', function () {
-      _.every(mocks.arr, function (el, i, arr) {
-        arr.should.equal(mocks.arr);
+      _.every(testData.arr, function (el, i, arr) {
+        arr.should.equal(testData.arr);
         called = true;
       });
       called.should.be.true;
       called = false;
-      _.every(mocks.obj, function (val, key, obj) {
-        obj.should.equal(mocks.obj);
+      _.every(testData.obj, function (val, key, obj) {
+        obj.should.equal(testData.obj);
         called = true;
       });
       called.should.be.true;
     });
 
     it('should bind to context if one is passed', function () {
-      _.every(mocks.arr, function () {
-        this.should.equal(mocks.obj);
+      _.every(testData.arr, function () {
+        this.should.equal(testData.obj);
         called = true;
-      }, mocks.obj);
+      }, testData.obj);
       called.should.be.true;
       called = false;
-      _.every(mocks.obj, function () {
-        this.should.equal(mocks.arr);
+      _.every(testData.obj, function () {
+        this.should.equal(testData.arr);
         called = true;
-      }, mocks.arr);
+      }, testData.arr);
       called.should.be.true;
     });
 
@@ -581,25 +581,25 @@ describe('Collections', function () {
     });
 
     it('should return true if any value passes a truth test', function () {
-      _.some(mocks.arr, function (el, i, arr) {
+      _.some(testData.arr, function (el, i, arr) {
         arr[i].should.equal(el);
         return !el;
       }).should.be.false;
-      _.some(mocks.obj, function (val, key, obj) {
+      _.some(testData.obj, function (val, key, obj) {
         obj[key].should.equal(val);
         return !val;
       }).should.be.false;
-      _.some(mocks.halfTruthyArr, function (el) {
+      _.some(testData.halfTruthyArr, function (el) {
         return el;
       }).should.be.true;
-      _.some(mocks.halfTruthyObj, function (val) {
+      _.some(testData.halfTruthyObj, function (val) {
         return val;
       }).should.be.true;
     });
 
     it('should ignore the object prototype', function () {
-      mocks.obj.constructor.prototype.foo = 'foo';
-      _.some(mocks.obj, function (val, key, obj) {
+      testData.obj.constructor.prototype.foo = 'foo';
+      _.some(testData.obj, function (val, key, obj) {
         obj.hasOwnProperty(key).should.be.true;
         called = true;
       });
@@ -607,32 +607,32 @@ describe('Collections', function () {
     });
 
     it('should access the original collection', function () {
-      _.some(mocks.arr, function (el, i, arr) {
-        arr.should.equal(mocks.arr);
+      _.some(testData.arr, function (el, i, arr) {
+        arr.should.equal(testData.arr);
         called = true;
       });
       called.should.be.true;
       called = false;
-      _.some(mocks.obj, function (val, key, obj) {
-        obj.should.equal(mocks.obj);
+      _.some(testData.obj, function (val, key, obj) {
+        obj.should.equal(testData.obj);
         called = true;
       });
       called.should.be.true;
     });
 
     it('should bind to context if one is passed', function () {
-      _.some(mocks.arr, function () {
-        this.should.equal(mocks.obj);
+      _.some(testData.arr, function () {
+        this.should.equal(testData.obj);
         called = true;
         return true;
-      }, mocks.obj);
+      }, testData.obj);
       called.should.be.true;
       called = false;
-      _.some(mocks.obj, function () {
-        this.should.equal(mocks.arr);
+      _.some(testData.obj, function () {
+        this.should.equal(testData.arr);
         called = true;
         return true;
-      }, mocks.arr);
+      }, testData.arr);
       called.should.be.true;
     });
 
@@ -659,17 +659,17 @@ describe('Collections', function () {
     });
 
     it('should return an array with the results of calling the indicated method on each element', function () {
-      _.invoke(mocks.arr, 'testCall').should.eql(mocks.arr);
-      _.invoke(mocks.obj, 'testCall').should.eql(mocks.objValuesArr);
+      _.invoke(testData.arr, 'testCall').should.eql(testData.arr);
+      _.invoke(testData.obj, 'testCall').should.eql(testData.objValuesArr);
     });
 
     it('should correctly pass the arguments', function () {
-      argsArr = [mocks.arr, mocks.obj];
-      _.invoke(mocks.arr, 'testArgs', mocks.arr, mocks.obj);
+      argsArr = [testData.arr, testData.obj];
+      _.invoke(testData.arr, 'testArgs', testData.arr, testData.obj);
       called.should.be.true;
       called = false;
-      argsArr = [mocks.obj, mocks.arr];
-      _.invoke(mocks.obj, 'testArgs', mocks.obj, mocks.arr);
+      argsArr = [testData.obj, testData.arr];
+      _.invoke(testData.obj, 'testArgs', testData.obj, testData.arr);
       called.should.be.true;
     });
 
@@ -699,10 +699,10 @@ describe('Functions', function () {
       var called = 0;
       var onced = _.once(function (string) {
         called ++;
-        return mocks.reverseString(string);
+        return testData.reverseString(string);
       });
-      onced(mocks.string).should.equal(mocks.reversedString);
-      onced(mocks.reversedString).should.equal(mocks.reversedString);
+      onced(testData.string).should.equal(testData.reversedString);
+      onced(testData.reversedString).should.equal(testData.reversedString);
       called.should.equal(1);
     });
 
@@ -714,10 +714,10 @@ describe('Functions', function () {
       var called = 0;
       var memoized = _.memoize(function (string) {
         called ++;
-        return mocks.reverseString(string);
+        return testData.reverseString(string);
       });
-      memoized(mocks.string).should.equal(mocks.reversedString);
-      memoized(mocks.string).should.equal(mocks.reversedString);
+      memoized(testData.string).should.equal(testData.reversedString);
+      memoized(testData.string).should.equal(testData.reversedString);
       called.should.equal(1);
     });
 
@@ -725,10 +725,10 @@ describe('Functions', function () {
       var called = 0;
       var memoized = _.memoize(function (string) {
         called ++;
-        return mocks.reverseString(string);
+        return testData.reverseString(string);
       });
-      memoized(mocks.string).should.equal(mocks.reversedString);
-      memoized(mocks.reversedString).should.equal(mocks.string);
+      memoized(testData.string).should.equal(testData.reversedString);
+      memoized(testData.reversedString).should.equal(testData.string);
       called.should.equal(2);
     });
 
@@ -738,18 +738,18 @@ describe('Functions', function () {
 
     it('should delay the execution of a function, and pass arguments when provided', function (done) {
       var called = 0;
-      var string = mocks.string;
+      var string = testData.string;
       _.delay(function (str) {
         called ++;
-        string = mocks.reverseString(str);
-      }, 50, mocks.string);
+        string = testData.reverseString(str);
+      }, 50, testData.string);
       called.should.equal(0);
-      string.should.equal(mocks.string);
+      string.should.equal(testData.string);
       setTimeout(function () {
         var err;
         try {
           called.should.equal(1);
-          string.should.equal(mocks.reversedString);
+          string.should.equal(testData.reversedString);
         } catch (e) {err = e;}
         done(err);
       }, 60);
@@ -763,18 +763,18 @@ describe('Functions', function () {
       var called = 0;
       var throttled = _.throttle(function (string) {
         called ++;
-        return mocks.reverseString(string);
+        return testData.reverseString(string);
       }, 1);
-      throttled(mocks.string).should.equal(mocks.reversedString);
+      throttled(testData.string).should.equal(testData.reversedString);
       called.should.equal(1);
     });
 
     it('should return the last computed result when throttled', function () {
       var throttled = _.throttle(function (string) {
-        return mocks.reverseString(string);
+        return testData.reverseString(string);
       }, 300);
-      throttled(mocks.string).should.equal(mocks.reversedString);
-      throttled().should.equal(mocks.reversedString);
+      throttled(testData.string).should.equal(testData.reversedString);
+      throttled().should.equal(testData.reversedString);
     });
 
     it('should call the function at most once every indicated milliseconds', function (done) {
