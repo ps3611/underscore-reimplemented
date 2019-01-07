@@ -22,14 +22,9 @@ _.first = function (array, n) {
 // If n is not provided it returns an array with just the last element.
 _.last = function (array, n) {
   if (array === null || array === undefined || typeof(array) === 'number') return [];
-  if (Array.isArray(array)) {
-    if (n <= 0 || n === undefined) return array.slice(-1);
-    return array.slice(-n);
-  }
-  else {
-    if (n <= 0 || n === undefined) return Object.values(array).slice(-1);
-    return Object.values(array).slice(-n);
-  }
+  if (!Array.isArray(array)) array = Object.values(array);
+  if (n <= 0 || n === undefined) return array.slice(-1);
+  return array.slice(-n);
 };
 
 
@@ -44,6 +39,7 @@ _.uniq = function (array) {
 };
 
 
+// _.shuffle(array)
 // Returns a shuffled copy of an array, using a version of
 // the Fisher-Yates shuffle.
 _.shuffle = function (array) {
