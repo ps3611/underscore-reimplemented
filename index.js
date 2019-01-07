@@ -11,13 +11,9 @@ const _ = {};
 // If n is not provided it returns an array with just the first element.
 _.first = function (array, n) {
   if (array === null || array === undefined || typeof(array) === 'number') return [];
-  if (Array.isArray(array)) {
-    if (n <= 0 || n === undefined) return array.slice(0,1);
-    return array.slice(0,n);
-  } else {
-    if (n <= 0 || n === undefined) return Object.values(array).slice(0,1);
-    return Object.values(array).slice(0,n);
-  }
+  if (!Array.isArray(array)) array = Object.values(array);
+  if (n <= 0 || n === undefined) return array.slice(0,1);
+  return array.slice(0,n);
 };
 
 
