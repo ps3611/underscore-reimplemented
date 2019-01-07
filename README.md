@@ -5,7 +5,6 @@ Underscore is a popular JavaScript library that provides utility functions for c
 ## Methods
 
 Reimplemented methods can be found in *index.js*.
-
 By opening *index.html*, you can see the results of the tests:
 
 ![Img](https://s3.amazonaws.com/ps3611-images/underscorejs.png)
