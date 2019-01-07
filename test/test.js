@@ -83,34 +83,48 @@ describe('Arrays', function () {
 
   describe('shuffle', function () {
 
-    it('should return a shuffled copy of a list', function () {
-      var check = false;
-      var shuffled = _.shuffle(testData.arr);
-      for (var i = 0; i < shuffled.length; i++) {
-        if (shuffled[i] === testData.arr[i]) {
-          check = false;
-        } else {
-          check = true;
-          break;
-        }
-      }
-      check.should.be.true;
-      shuffled = testData.arr;
-      for (var j = 0; j < shuffled.length; j++) {
-        if (shuffled[j] === testData.arr[j]) {
-          check = false;
-        } else {
-          check = true;
-          break;
-        }
-      }
-      check.should.be.false;
-    });
-
     it('should return a shuffled copy with the same number ol elements', function () {
       var length;
       _.shuffle(testData.arr).length.should.equal(testData.arr.length);
     });
+
+    it('should return a shuffled copy with the same elements', function () {
+      var shuffled = _.shuffle(testData.arr);
+      var check = true;
+      shuffled.forEach(el => {
+        if(!testData.arr.includes(el)) check = false;
+      });
+      check.should.be.true;
+      var check = true;
+      testData.arr.forEach(el => {
+        if(!shuffled.includes(el)) check = false;
+      });
+      check.should.be.true;
+    });
+
+    it('should return a shuffled copy of the array', function () {
+    var check = false;
+    var shuffled = _.shuffle(testData.arr);
+    for (var i = 0; i < shuffled.length; i++) {
+      if (shuffled[i] === testData.arr[i]) {
+        check = false;
+      } else {
+        check = true;
+        break;
+      }
+    }
+    check.should.be.true;
+    shuffled = testData.arr;
+    for (var j = 0; j < shuffled.length; j++) {
+      if (shuffled[j] === testData.arr[j]) {
+        check = false;
+      } else {
+        check = true;
+        break;
+      }
+    }
+    check.should.be.false;
+  });
 
   });
 
